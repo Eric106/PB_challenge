@@ -1,0 +1,8 @@
+{
+    "secret_key":"$#th43&JYRMNj45eYJM%68I%8kYUT9",
+    "jwt_key":"dS6cggck878$J$JY45y$5J%#h35hg#",
+    "db_host":"server.mysql.db.host",
+    "db_user":"server_user01",
+    "db_pass":"<YOUR_PASSWORD>",
+    "db_schema":"playbusiness_test"
+}

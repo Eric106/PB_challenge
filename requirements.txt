@@ -1,0 +1,12 @@
+# conda create -n back_end python==3.10.* -y ; conda activate back_end ; pip install -r requirements.txt
+
+PyJWT == 2.8.0
+Flask ==  3.0.3
+mysql-connector-python == 8.4.0
+gunicorn == 22.0.0
+pytz == 2024.1
+pytest == 8.2.2
+psutil
+ipython
+pylint
+autopep8
