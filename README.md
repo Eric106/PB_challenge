@@ -26,6 +26,8 @@
 ├── startup.py
 └── stop_server.sh
 ```
+## **Routes Documentation** 🚨
+**You can read docs of the web server routes [here](./src/README.md)**
 ## Install **tmux & conda**
 > `NOTE ✅` You need to install  `tmux` and `conda`.
 
@@ -89,22 +91,33 @@ To set the secret keys and DB connection credentials, you need to provide the `c
 ```
 In the same folder `src/modules/config/` is a [config_template.json](./src/modules/config/config_template.json)
 
----
-## Start server
+## Server management
+
+### **Start**
 Command to start the web server
 ```bash
 bash start_server.sh
 ```
 
-## Stop server
+### **Stop**
 Command to stop the web server
 ```bash
 bash stop_server.sh
 ```
----
-### Check server console
+
+### **Check console**
 Command to check the web server console
 ```bash
 tmux a -t back_end
 ```
 
+### Debug mode server
+Go inside the work directory and activate environment
+```bash
+cd PB_challenge/
+conda activate back_end 
+```
+Run the [startup.py](./startup.py) script
+```bash
+python startup.py
+```
