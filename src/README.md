@@ -1,4 +1,4 @@
-# WEB API ([routes.py](./src/routes.py))
+# WEB API ([routes.py](./routes.py))
 
 This document describes the routes available in the Flask application, including the methods, purpose, and expected responses. All responses and request bodies must be in JSON format. Routes requiring authentication are noted accordingly.
 
