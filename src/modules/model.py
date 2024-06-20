@@ -157,7 +157,7 @@ class Investment:
             value = data[col]
             if isinstance(value, Decimal):
                 decimals = 4 if '_rate' in col else 2
-                value = round(value, decimals)
+                value = float(round(value, decimals))
             data[col] = value
         return data
 
