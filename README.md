@@ -1,5 +1,5 @@
 # PB challenge 
-```console
+```text
 ├── db_restore
 │   └── playbusiness_test.sql
 ├── README.md
