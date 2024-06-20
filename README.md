@@ -78,7 +78,7 @@ ssl_key="src/ssl_data/playbusiness.test.key"
 Also at `src/ssl_data/` you can use the self signed SSL keys that are included in this repo
 
 ### **Server Config**
-To set the secret keys and DB connection credentials, you need to provide the `config.json` file, at `src/modules/config/config.json`
+To set the secret keys and DB connection credentials, you need to provide the `config.json` file at `src/modules/config/config.json`
 ```json
 {
     "secret_key":"$#th43&JYRMNj45eYJM%68I%8kYUT9",
