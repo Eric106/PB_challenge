@@ -66,6 +66,7 @@ A decorator to ensure that a valid token is present in the request headers. If t
   - Success: `{ "success": True, "investment": <investment_details> }`, Status Code: 200
   - Error: `{ "message": "Bad Request" }`, Status Code: 400
   - Forbidden: `{ "message": "Forbidden" }`, Status Code: 403
+    - This response when the user ain't have enough pb_points to apply in the investment
 
 ### `"/calc_investment"` (Requires Authentication)
 - **Methods**: POST
