@@ -116,9 +116,9 @@ def get_investments():
         )
     except KeyError:
         return jsonify({'message': 'Bad Request'}), 400
-    
+    investments = user.get_investments()
     return jsonify({'success': True,
-                    'investments':user.get_investments()}), 200
+                    'investments':investments}), 200
 
 @app.route("/update_investment", methods=['POST'])
 @auth_required
