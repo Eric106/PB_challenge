@@ -30,39 +30,39 @@
 > `NOTE ✅` You need to install  `tmux` and `conda`.
 
 To install `tumx` use this command:
-```console
+```bash
 sudo apt install tmux
 ```
 For `conda` you can download the latest installer from [conda.io](https://docs.conda.io/en/latest/miniconda.html) for your linux distro, for example x86_64: 
-```console
+```bash
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 ```
 And then installing it with
 > NOTE 👀: When the installer prompt if you want to execute "conda init" select yes. 
-```console
+```bash
 bash Miniconda3-latest-Linux-x86_64.sh
 ```
 `OPTIONAL ->` To avoid the automatic activation of the conda base environment use this: 
-```console
+```bash
 conda config --set auto_activate_base false
 ```
 ## **Install App**
 
 Once you have installed `tmux` and `conda`, clone this repo.
-```console
+```bash
 git clone "https://github.com/Eric106/PB_challenge"
 ```
 
 Then you need to create the environment and install all the python dependencies.
 
-```console
+```bash
 conda create -n back_end python==3.10.* -y
 conda activate back_end
 pip install -r PB_challenge/requirements.txt
 ```
 ### **MYSQL Setup**
 To set up the DB you can use the [playbusiness_test.sql](./db_restore/playbusiness_test.sql) file. Execute the next command to restore the schema
-```console
+```bash
 mysql -u user -p playbusiness_test < PB_challenge/db_restore/playbusiness_test.sql
 ```
 
@@ -92,19 +92,19 @@ In the same folder `src/modules/config/` is a [config_template.json](./src/modul
 ---
 ## Start server
 Command to start the web server
-```console
+```bash
 bash start_server.sh
 ```
 
 ## Stop server
 Command to stop the web server
-```console
+```bash
 bash stop_server.sh
 ```
 ---
 ### Check server console
 Command to check the web server console
-```console
+```bash
 tmux a -t back_end
 ```
 
