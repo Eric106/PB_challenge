@@ -37,7 +37,7 @@ A decorator to ensure that a valid token is present in the request headers. If t
   - Error: `{ "message": "Bad Request" }`, Status Code: 400
   - Unauthorized: `{ "message": "Unauthorized" }`, Status Code: 401
 
-> NOTE 👀🔴: **Standard JSON response and request for < investment details >**
+> NOTE 👁🕳👁: **Standard JSON response and request for < investment details >**
 ```json
 {
   "date_last_update": "2024-06-20 21:11:31.992824",
