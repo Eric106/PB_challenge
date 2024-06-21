@@ -119,22 +119,25 @@ class User:
 class Investment:
     investment_id: str = field(init=True, default='')
     user_id: str = field(init=True, default='')
-    total_investment: Decimal = field(init=True, default=Decimal(0.0))
-    pb_points: Decimal = field(init=True, default=Decimal(0.0))
-    pay_method: str = field(init=True, default='')
+    total_investment: Decimal = field(init=True, default=None)
+    pb_points: Decimal = field(init=True, default=None)
+    pay_method: str = field(init=True, default='SPEI')
     pb_commission_rate: Decimal = field(init=True, default=Decimal(0.05))
-    pb_commission: Decimal = field(init=False)
+    pb_commission: Decimal = field(init=True, default=Decimal(0.0))
     iva_pb_commission_rate: Decimal = field(init=True, default=Decimal(0.16))
-    iva_pb_commission: Decimal = field(init=False)
+    iva_pb_commission: Decimal = field(init=True, default=Decimal(0.0))
     var_pay_commission_rate : Decimal = field(init=True, default=Decimal(0.024))
-    var_pay_commission : Decimal = field(init=False)
+    var_pay_commission : Decimal = field(init=True, default=Decimal(0.0))
     iva_var_pay_commission_rate : Decimal = field(init=True, default=Decimal(0.16))
-    iva_var_pay_commission: Decimal = field(init=False)
-    total_to_pay : Decimal = field(init=False)
+    iva_var_pay_commission: Decimal = field(init=True, default=Decimal(0.0))
+    total_to_pay : Decimal = field(init=True, default=Decimal(0.0))
     date_last_update: datetime = field(init=False)
 
     def __post_init__(self):
         self.calculator()
+    
+    def check_basic_data(self) -> bool:
+        return isinstance(self.total_investment, Decimal) or isinstance(self.pb_points, Decimal)
     
     def calculator(self):
         '''
@@ -146,26 +149,27 @@ class Investment:
             x = a + x(b) + (x(b))c ;
             x = a / (1-b-bc) ; 
         '''
-        self.pb_commission = self.total_investment * self.pb_commission_rate
-        self.iva_pb_commission = self.pb_commission * self.iva_pb_commission_rate
-        self.total_to_pay = (self.total_investment - self.pb_points) + \
-            self.pb_commission + self.iva_pb_commission
-        if self.pay_method == 'VISA/MC':
-            var_pay_comm_and_iva = 1 - self.var_pay_commission_rate - \
-                (self.var_pay_commission_rate * self.iva_var_pay_commission_rate)
-            self.total_to_pay = self.total_to_pay / var_pay_comm_and_iva
-            self.var_pay_commission = self.total_to_pay * self.var_pay_commission_rate
-            self.iva_var_pay_commission = self.var_pay_commission * self.iva_pb_commission_rate
-        elif self.pay_method == 'SPEI':
-            self.var_pay_commission = Decimal(0)
-            self.iva_var_pay_commission = Decimal(0)
+        if self.check_basic_data():
+            self.pb_commission = self.total_investment * self.pb_commission_rate
+            self.iva_pb_commission = self.pb_commission * self.iva_pb_commission_rate
+            self.total_to_pay = (self.total_investment - self.pb_points) + \
+                self.pb_commission + self.iva_pb_commission
+            if self.pay_method == 'VISA/MC':
+                var_pay_comm_and_iva = 1 - self.var_pay_commission_rate - \
+                    (self.var_pay_commission_rate * self.iva_var_pay_commission_rate)
+                self.total_to_pay = self.total_to_pay / var_pay_comm_and_iva
+                self.var_pay_commission = self.total_to_pay * self.var_pay_commission_rate
+                self.iva_var_pay_commission = self.var_pay_commission * self.iva_pb_commission_rate
+            elif self.pay_method == 'SPEI':
+                self.var_pay_commission = Decimal(0)
+                self.iva_var_pay_commission = Decimal(0)
 
     def set_all_null(self):
-        for col in self.to_dict().keys():
+        for col in self.__dict__.keys():
             self.__setattr__(col, None)
           
     def is_null(self) -> bool:
-        return all(value==None for value in self.to_dict().values())
+        return all(value==None for value in self.__dict__.values())
 
     def to_dict(self) -> dict:
         data : dict = self.__dict__
@@ -218,6 +222,7 @@ class Investment:
             conn.commit()
         except IntegrityError as e:
             print(f'ERROR at insert investment: {self.to_dict()}',e)
+            self.set_all_null()
         cursor.close()
         conn.close()  
     
@@ -260,6 +265,7 @@ class Investment:
             conn.commit()
         except IntegrityError as e:
             print(f'ERROR at update investment: {self.to_dict()}',e)
+            self.set_all_null()
         cursor.close()
         conn.close()
 
@@ -273,5 +279,6 @@ class Investment:
             conn.commit()
         except IntegrityError as e:
             print(f'ERROR at delete investment: {self.to_dict()}',e)
+            self.set_all_null()
         cursor.close()
         conn.close()

@@ -28,6 +28,11 @@
 ```
 ## **Routes Documentation** 🚨
 **You can read docs of the web server routes [here](./src/README.md)**
+
+## **Tests** 🚨
+**You can see some tests of the web server routes [here](./tests/out_test.ipynb)**
+**Also you can use my testing endpoint [pbtest.egvserv.io](https://pbtest.egvserv.io)**
+
 ## Install **tmux & conda**
 > `NOTE ✅` You need to install  `tmux` and `conda`.
 

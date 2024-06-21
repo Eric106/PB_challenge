@@ -72,15 +72,13 @@ def login():
 @app.route("/create_investment", methods=['POST'])
 @auth_required
 def create_investment():
-    try:
-        investment = Investment()
-        investment.from_dict(request.json)
-    except KeyError:
-        return jsonify({'message': 'Bad Request'}), 400
+
+    investment = Investment()
+    investment.from_dict(request.json)
     
     investment.create()
     if investment.is_null():
-        return jsonify({'message': 'Forbidden'}), 403
+        return jsonify({'message': 'Bad Request'}), 400
 
     return jsonify({'success': True,
                     'investment':investment.to_dict()}), 200
@@ -147,10 +145,11 @@ def update_investment():
         investment.get()
     except KeyError:
         return jsonify({'message': 'Bad Request'}), 400
-    
+
+
     if investment.is_null():
         return jsonify({'message': 'Not Found'}), 404
-    
+
     investment.update(request.json)
 
     return jsonify({'success': True,
@@ -165,6 +164,7 @@ def delete_investment():
             investment_id=request.json['investment_id'],
             user_id=jwt_payload['user_id']
         )
+        print(investment.to_dict())
         investment.get()
     except KeyError:
         return jsonify({'message': 'Bad Request'}), 400

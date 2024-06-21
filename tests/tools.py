@@ -3,7 +3,7 @@ from requests import post, get, delete, Response
 import urllib3
 from urllib3.connectionpool import InsecureRequestWarning
 
-TEST_URL = 'https://192.168.169.170:65443'
+TEST_URL = 'https://pbtest.egvserv.io'
 
 
 def new_request(url:str, data:dict, method:str, token:str = None) -> Response:
