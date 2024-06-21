@@ -73,7 +73,7 @@ A decorator to ensure that a valid token is present in the request headers. If t
 - **Response** (JSON):
   - Success: `{ "success": True, "investment": <investment_details> }`, Status Code: 200
   - Error: `{ "message": "Bad Request" }`, Status Code: 400
-    - When you don't have enough pb_point, to apply or a bad request
+    - When you don't have enough pb_point (every new user has $2000 to test), to apply or a bad request
 
 ### `"/calc_investment"` (Requires Authentication)
 - **Methods**: POST
