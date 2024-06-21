@@ -26,6 +26,14 @@ A decorator to ensure that a valid token is present in the request headers. If t
   - Error: `{ "message": "Bad Request" }`, Status Code: 400
   - Unauthorized: `{ "message": "Unauthorized" }`, Status Code: 401
 
+### `"/delete_user"` (Requires Authentication)
+- **Methods**: DELETE
+- **Description**: Deletes the authenticated user
+- **Response** (JSON):
+  - Success: `{ "success": True }`, Status Code: 200
+  - Error: `{ "message": "Bad Request" }`, Status Code: 400
+  - Unauthorized: `{ "message": "Unauthorized" }`, Status Code: 401
+
 ### `"/login"`
 - **Methods**: POST
 - **Description**: Authenticates a user and returns a token if successful.

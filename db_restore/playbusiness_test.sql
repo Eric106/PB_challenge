@@ -65,7 +65,7 @@ CREATE TABLE `user` (
   `user_name` varchar(50) NOT NULL,
   `password` blob NOT NULL,
   `date_last_update` datetime DEFAULT NULL,
-  `pb_points` decimal(15,2) DEFAULT '0.00',
+  `pb_points` decimal(15,2) DEFAULT '2000.00',
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name_UNIQUE` (`user_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;

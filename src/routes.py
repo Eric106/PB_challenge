@@ -37,6 +37,21 @@ def create_user():
         return jsonify({'success': True}), 200
     else:
         return jsonify({'message': 'Unauthorized'}), 401
+    
+@app.route("/delete_user", methods=['DELETE'])
+@auth_required
+def delete_user():
+    try:
+        jwt_payload = AUTH.get_payload(request.headers)
+        user = User(user_id=jwt_payload['user_id'])
+    except KeyError:
+        return jsonify({'message': 'Bad Request'}), 400
+    
+    user.delete()
+    if user.is_valid:
+        return jsonify({'success': True}), 200
+    else:
+        return jsonify({'message': 'Unauthorized'}), 401
 
 @app.route("/login", methods=['POST'])
 def login():
@@ -81,7 +96,7 @@ def calc_investment():
             pb_points=Decimal(request.json['pb_points']),
             pay_method=request.json['pay_method'],
         )
-    except KeyError:
+    except (KeyError,TypeError):
         return jsonify({'message': 'Bad Request'}), 400
     
     return jsonify({'success': True,

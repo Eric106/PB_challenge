@@ -29,6 +29,9 @@ class User:
     is_valid: bool = field(init=False)
 
     def create(self):
+        if self.user_name=='' and self.password=='':
+            self.is_valid = False
+            return
         conn : MySQLConnection = get_conn()
         cursor = conn.cursor()
         try:
@@ -98,6 +101,19 @@ class User:
         cursor.close()
         conn.close()
 
+    def delete(self):
+        conn : MySQLConnection = get_conn()
+        cursor = conn.cursor()
+        try:
+            cursor.execute(Template.delete_user, params=(
+                self.user_id,
+            ))
+            conn.commit()
+            self.is_valid = True
+        except Exception:
+            self.is_valid = False
+        cursor.close()
+        conn.close()
 
 @dataclass(frozen=False)
 class Investment:

@@ -26,6 +26,11 @@ UPDATE user SET pb_points = %s
 WHERE user_id = %s ;
 '''
 
+    delete_user = '''
+DELETE FROM user
+WHERE user_id = %s
+'''
+
     insert_investment = '''
 INSERT INTO investment (investment_id, user_id, date_last_update,
     total_investment, pb_points, pay_method,
