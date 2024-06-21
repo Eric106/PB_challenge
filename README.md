@@ -15,6 +15,7 @@
 │   │   │   └── __init__.py
 │   │   ├── model.py
 │   │   └── sql.py
+│   ├── README.md
 │   ├── routes.py
 │   ├── ssl_data
 │   │   ├── playbusiness.test.crt
@@ -24,7 +25,13 @@
 │   └── webapp.py
 ├── start_server.sh
 ├── startup.py
-└── stop_server.sh
+├── stop_server.sh
+└── tests
+    ├── out_test.ipynb
+    ├── test_01_user.py
+    ├── test_02_investment.py
+    ├── test_03_user.py
+    └── tools.py
 ```
 ## **Routes Documentation** 🚨
 **You can read docs of the web server routes [here](./src/README.md)**
@@ -32,6 +39,7 @@
 ## **Tests** 🚨
 **You can see some tests of the web server routes [here](./tests/out_test.ipynb)**
 <br>
+
 **Also you can use my testing endpoint [pbtest.egvserv.io](https://pbtest.egvserv.io)**
 
 ## Install **tmux & conda**
