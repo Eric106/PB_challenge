@@ -40,7 +40,7 @@
 **You can see some tests of the web server routes [here](./tests/out_test.ipynb)**
 <br>
 
-**Also you can use my testing endpoint [pbtest.egvserv.io](https://pbtest.egvserv.io)**
+**Also you can use my test endpoint [pbtest.egvserv.io](https://pbtest.egvserv.io)**
 
 ## Install **tmux & conda**
 > `NOTE ✅` You need to install  `tmux` and `conda`.
