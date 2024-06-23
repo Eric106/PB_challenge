@@ -4,7 +4,6 @@
 │   └── playbusiness_test.sql
 ├── README.md
 ├── requirements.txt
-├── set_workers.py
 ├── src
 │   ├── __init__.py
 │   ├── modules
